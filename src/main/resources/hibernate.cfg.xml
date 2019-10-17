@@ -39,6 +39,7 @@ made subject to such option by the copyright holder.
 
 Contributor(s):
 -->
+<!--
 <hibernate-configuration>
     <session-factory>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
@@ -54,3 +55,4 @@ Contributor(s):
         <property name="hbm2ddl.auto">update</property>
     </session-factory>
 </hibernate-configuration>
+-->
