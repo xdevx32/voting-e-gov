@@ -1,6 +1,5 @@
 package com.example.egov.voting.prototype.demo.egov.voting;
 
-
 import javax.persistence.*;
 
 @Entity
