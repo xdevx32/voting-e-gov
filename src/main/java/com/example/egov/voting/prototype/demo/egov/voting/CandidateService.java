@@ -13,7 +13,7 @@ public class CandidateService {
     @Autowired
     private CandidateRepository candidateRepository;
 
-    public List<Candidate> getAllEmployees() {
+    public List<Candidate> getAllCandidates() {
         List<Candidate> candidates = new ArrayList<>();
         candidateRepository.findAll()
                 .forEach(candidates::add);

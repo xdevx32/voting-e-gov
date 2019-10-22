@@ -2,22 +2,36 @@ package com.example.egov.voting.prototype.demo.egov.voting;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.xml.soap.Detail;
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @RequestMapping("/candidates")
 public class CandidateController {
+
     @Autowired
     private CandidateService candidateService;
 
 
     @RequestMapping("/list")
-    public String getAllData(Candidate candidate) {
-/*
+    public String getAllData(Candidate candidate, Model model) {
+
+        String title = "Candidates";
+        model.addAttribute("title", title);
+
+        List<Candidate> candidates = candidateService.getAllCandidates();
+        model.addAttribute("candidates", candidates);
+
+        candidates.add(new Candidate("Boyko","GERB","12"));
+        candidates.add(new Candidate("Stanishev","BSP","2"));
+        candidates.add(new Candidate("Volen","ATAKA","400"));
+
+        /* Use case
         List<Employee> employees = employeeService.getAllEmployees();
         List<Detail> details = detailService.getAllDetails();
         List<Material> materials = materialService.getAllMaterials();
@@ -53,8 +67,8 @@ public class CandidateController {
         String title = "Справка";
         model.addAttribute("title", title);
 
- */
-        return "candidates";
+        */
+        return "candidates-list";
     }
 
 }
