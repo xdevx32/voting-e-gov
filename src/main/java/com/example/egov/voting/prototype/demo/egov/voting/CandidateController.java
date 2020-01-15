@@ -27,9 +27,9 @@ public class CandidateController {
         List<Candidate> candidates = candidateService.getAllCandidates();
         model.addAttribute("candidates", candidates);
 
-        candidates.add(new Candidate("Boyko","GERB","12"));
-        candidates.add(new Candidate("Stanishev","BSP","2"));
-        candidates.add(new Candidate("Volen","ATAKA","400"));
+        candidates.add(new Candidate("Примерен кандидат 1","Примерна партия на кандидата","1"));
+        candidates.add(new Candidate("Примерен кандидат 2","Примерна партия на кандидата","2"));
+        candidates.add(new Candidate("Примерен кандидат 3","Примерна партия на кандидата","3"));
 
         /* Use case
         List<Employee> employees = employeeService.getAllEmployees();
