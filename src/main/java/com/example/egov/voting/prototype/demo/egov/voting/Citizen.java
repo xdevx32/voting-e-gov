@@ -10,7 +10,7 @@ public class Citizen {
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Ballot ballot;
+//    private Ballot ballot;
 
     public String getName() {
         return name;
@@ -20,9 +20,9 @@ public class Citizen {
         this.name = name;
     }
 
-    public Ballot getBallot() {
-        return ballot;
-    }
+//    public Ballot getBallot() {
+//        return ballot;
+//    }
 
     public Long getId() {
         return id;
@@ -32,7 +32,7 @@ public class Citizen {
         this.id = id;
     }
 
-    public void setBallot(Ballot ballot) {
-        this.ballot = ballot;
-    }
+//    public void setBallot(Ballot ballot) {
+//        this.ballot = ballot;
+//    }
 }

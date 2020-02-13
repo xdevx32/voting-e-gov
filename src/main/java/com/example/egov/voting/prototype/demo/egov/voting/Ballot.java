@@ -4,14 +4,17 @@ package com.example.egov.voting.prototype.demo.egov.voting;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.time.LocalDate;
+import javax.persistence.*;
+
 
 /***
  *
- * Клас представляващ всеки вот като отделна единица.
+ * Клас представляващ всяка бюлетина като отделна единица.
  *
  */
 
 @Entity
+@Table(name = "ballot")
 public class Ballot {
 
     @Id
@@ -19,9 +22,11 @@ public class Ballot {
 
     LocalDate localDate;
 
+    @OneToOne
     Citizen citizen;
 
-    Candidate candidate;
+    @OneToOne
+    Party party;
 
     public Long getId() {
         return id;
@@ -47,11 +52,11 @@ public class Ballot {
         this.citizen = citizen;
     }
 
-    public Candidate getCandidate() {
-        return candidate;
+    public Party getParty() {
+        return party;
     }
 
-    public void setCandidate(Candidate candidate) {
-        this.candidate = candidate;
+    public void setParty(Party party) {
+        this.party = party;
     }
 }

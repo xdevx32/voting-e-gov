@@ -3,20 +3,18 @@ package com.example.egov.voting.prototype.demo.egov.voting;
 import javax.persistence.*;
 
 @Entity
-public class Candidate {
+public class Party {
 
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private final String name;
-    private final String party;
     private final String number;
 
 
-    public Candidate(String name, String party, String number) {
+    public Party(String name, String number) {
         this.name = name;
-        this.party = party;
         this.number = number;
     }
 
@@ -32,9 +30,6 @@ public class Candidate {
         return name;
     }
 
-    public String getParty() {
-        return party;
-    }
 
     public String getNumber() {
         return number;

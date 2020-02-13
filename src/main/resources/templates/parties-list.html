@@ -9,20 +9,20 @@
 </head>
 <body>
 <div class="owner-title">
-    <h1 th:text="${'Кандидати.'}"></h1>
+    <h1 th:text="${'Партии.'}"></h1>
     <table>
         <thead>
         <tr>
             <th th:text="${'Name'}"></th>
-            <th th:text="${'Party'}"></th>
+            <!--<th th:text="${'Party'}"></th>-->
             <th th:text="${'Number'}"></th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="candidate: ${candidates}">
-            <td th:text="${candidate.name}"></td>
-            <td th:text="${candidate.party}"></td>
-            <td th:text="${candidate.number}"></td>
+        <tr th:each="party: ${parties}">
+            <td th:text="${party.name}"></td>
+            <!--<td th:text="${candidate.party}"></td>-->
+            <td th:text="${party.number}"></td>
         </tr>
         </tbody>
     </table>

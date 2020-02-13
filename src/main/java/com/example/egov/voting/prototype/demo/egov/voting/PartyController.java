@@ -3,33 +3,30 @@ package com.example.egov.voting.prototype.demo.egov.voting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.xml.soap.Detail;
-import java.time.LocalDate;
 import java.util.List;
 
 @Controller
-@RequestMapping("/candidates")
-public class CandidateController {
+@RequestMapping("/parties")
+public class PartyController {
 
     @Autowired
-    private CandidateService candidateService;
+    private PartyService partyService;
 
 
     @RequestMapping("/list")
-    public String getAllData(Candidate candidate, Model model) {
+    public String getAllData(Party party, Model model) {
 
-        String title = "Candidates";
+        String title = "Party";
         model.addAttribute("title", title);
 
-        List<Candidate> candidates = candidateService.getAllCandidates();
-        model.addAttribute("candidates", candidates);
+        List<Party> parties = partyService.getAllParties();
+        model.addAttribute("parties", parties);
 
-        candidates.add(new Candidate("Примерен кандидат 1","Примерна партия на кандидата","1"));
-        candidates.add(new Candidate("Примерен кандидат 2","Примерна партия на кандидата","2"));
-        candidates.add(new Candidate("Примерен кандидат 3","Примерна партия на кандидата","3"));
+        parties.add(new Party("Примерна партия 1","1"));
+        parties.add(new Party("Примерна партия 2","2"));
+        parties.add(new Party("Примерна партия 3","3"));
 
         /* Use case
         List<Employee> employees = employeeService.getAllEmployees();
@@ -68,7 +65,7 @@ public class CandidateController {
         model.addAttribute("title", title);
 
         */
-        return "candidates-list";
+        return "parties-list";
     }
 
 }
