@@ -2,6 +2,7 @@ package com.example.egov.voting.prototype.demo.egov.voting;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Citizen {
@@ -10,7 +11,9 @@ public class Citizen {
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-//    private Ballot ballot;
+
+    @OneToOne
+    private Ballot ballot;
 
     public String getName() {
         return name;
@@ -20,9 +23,9 @@ public class Citizen {
         this.name = name;
     }
 
-//    public Ballot getBallot() {
-//        return ballot;
-//    }
+    public Ballot getBallot() {
+        return ballot;
+    }
 
     public Long getId() {
         return id;
@@ -32,7 +35,7 @@ public class Citizen {
         this.id = id;
     }
 
-//    public void setBallot(Ballot ballot) {
-//        this.ballot = ballot;
-//    }
+    public void setBallot(Ballot ballot) {
+        this.ballot = ballot;
+    }
 }
