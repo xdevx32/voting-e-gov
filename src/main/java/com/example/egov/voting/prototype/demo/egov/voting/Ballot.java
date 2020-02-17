@@ -25,7 +25,7 @@ public class Ballot {
     @OneToOne
     Citizen citizen;
 
-    @OneToOne
+    @ManyToOne
     Party party;
 
     public Long getId() {

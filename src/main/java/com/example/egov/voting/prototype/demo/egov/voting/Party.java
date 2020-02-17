@@ -1,6 +1,8 @@
 package com.example.egov.voting.prototype.demo.egov.voting;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Party {
@@ -11,6 +13,9 @@ public class Party {
 
     private final String name;
     private final String number;
+
+    @OneToMany
+    Set<Ballot> ballots = new HashSet<>();
 
 
     public Party(String name, String number) {
@@ -29,7 +34,6 @@ public class Party {
     public String getName() {
         return name;
     }
-
 
     public String getNumber() {
         return number;
