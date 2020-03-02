@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
-    @RequestMapping("/")
+    @RequestMapping("/asdfasf")
     public String showIndex(Model model) {
         // Set default GMT+0:00 time zone
         TimeZone timeZone;
@@ -42,7 +42,7 @@ public class IndexController {
 //            SecurityContextHolder.getContext().setAuthentication(authentication);
 
         /* end "some code" */
-        return "index";
+        return "index-admin";
     }
 
     // Cyrilic support
