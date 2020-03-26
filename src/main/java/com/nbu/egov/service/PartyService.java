@@ -1,5 +1,7 @@
-package com.example.egov.voting.prototype.demo.egov.voting;
+package com.nbu.egov.service;
 
+import com.nbu.egov.entity.Party;
+import com.nbu.egov.repository.PartyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +40,7 @@ public class PartyService {
 
     public void deleteParty(Long id) {
         Party party = partyRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Невалидно ID на партияс: " + id));
+                .orElseThrow(() -> new IllegalArgumentException("Невалидно ID на партия: " + id));
         partyRepository.delete(party);
     }
 

@@ -1,4 +1,4 @@
-package com.example.egov.voting.prototype.demo.egov.voting;
+package com.nbu.egov.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -1,4 +1,4 @@
-package com.example.egov.voting.prototype.demo.egov.voting;
+package com.nbu.egov;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

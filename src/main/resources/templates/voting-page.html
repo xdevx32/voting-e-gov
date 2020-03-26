@@ -58,18 +58,22 @@
                         <!-- Implement with for loop with the Party data! -->
                         <div class="grid-container"th:each="party: ${parties}">
                             <div class="grid-item"  th:text="${party.number +'. '+party.name}"></div>
-                            <input type="checkbox" th:name="${'checkboxG' + party.number}" th:id="${'checkboxG' + party.number}"  class="css-checkbox" value="${party.number}"/>
+                            <input type="checkbox" th:name="${'checkboxG' + party.number}" th:id="${'checkboxG' + party.number}"  class="css-checkbox" th:value="${party.number}"/>
                             <label class="css-label" th:for="${'checkboxG' + party.number}"></label>
                         </div>
                     </div>
 
                     <div class="col-lg-8 align-self-baseline">
 
-                        <input type="submit"  class="btn btn-primary btn-xl js-scroll-trigger" value="Гласувай"/>
+
+                        th:
+
+                        <input type="submit"  class="btn btn-primary btn-xl js-scroll-trigger" href="/vote-success" value="Гласувай"/>
                     </div>
                 </div>
             </div>
          </form>
+        <!--TODO: Finish form.-->
     </header>
 
 </body>

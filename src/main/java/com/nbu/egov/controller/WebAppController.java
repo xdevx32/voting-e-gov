@@ -1,10 +1,14 @@
-package com.example.egov.voting.prototype.demo.egov.voting;
+package com.nbu.egov.controller;
 
+import com.nbu.egov.entity.Party;
+import com.nbu.egov.repository.PartyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,7 +43,7 @@ public class WebAppController {
         return "admin";
     }
 
-    @RequestMapping("/vote")
+    @RequestMapping(value = "/vote", method= RequestMethod.GET)
     public String vote(Model model){
         model.addAttribute("datetime", new Date());
         model.addAttribute("username", "Acho");
@@ -58,6 +62,20 @@ public class WebAppController {
         parties.add(new Party("Нова зора", "54"));
         model.addAttribute("parties" , parties);
 
+
+
+
+
         return "voting-page";
+    }
+
+    @RequestMapping(value = "/vote-success")
+    public String voteSuccess(Model model, @ModelAttribute(value="party") Party party){
+        model.addAttribute(party);
+        System.out.println(party);
+        // TODO fix , get the party object properly
+        model.addAttribute("test", 1);
+        model.addAttribute("party", party);
+        return "vote-success";
     }
 }

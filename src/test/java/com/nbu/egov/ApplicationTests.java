@@ -1,4 +1,4 @@
-package com.example.egov.voting.prototype.demo.egov.voting;
+package com.nbu.egov;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
