@@ -15,8 +15,8 @@ public class PartyService {
     @Autowired
     private PartyRepository partyRepository;
 
-    public List<Party> getAllParties() {
-        List<Party> parties = new ArrayList<>();
+    public ArrayList<Party> getAllParties() {
+        ArrayList<Party> parties = new ArrayList<>();
         partyRepository.findAll()
                 .forEach(parties::add);
 

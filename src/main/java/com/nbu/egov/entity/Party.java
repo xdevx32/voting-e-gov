@@ -15,12 +15,14 @@ public class Party {
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private final String name;
-    private final String number;
+    private String name;
+    private String number;
 
     @OneToMany
     Set<Ballot> ballots = new HashSet<>();
 
+    public Party() {
+    }
 
     public Party(String name, String number) {
         this.name = name;
