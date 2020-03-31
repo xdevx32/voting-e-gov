@@ -8,10 +8,10 @@
 		<version>2.2.0.BUILD-SNAPSHOT</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example.egov.voting.prototype</groupId>
-	<artifactId>demo.egov.voting</artifactId>
+	<groupId>com.example.evote.prototype</groupId>
+	<artifactId>demo.evote</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo.egov.voting</name>
+	<name>demo.evote</name>
 	<description>Diploma work</description>
 
 	<properties>

@@ -1,12 +1,11 @@
-package com.nbu.egov.service;
+package com.nbu.evote.service;
 
-import com.nbu.egov.entity.Party;
-import com.nbu.egov.repository.PartyRepository;
+import com.nbu.evote.entity.Party;
+import com.nbu.evote.repository.PartyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class PartyService {

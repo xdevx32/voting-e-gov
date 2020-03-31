@@ -1,5 +1,5 @@
-package com.nbu.egov.repository;
-import com.nbu.egov.entity.Party;
+package com.nbu.evote.repository;
+import com.nbu.evote.entity.Party;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.ArrayList;

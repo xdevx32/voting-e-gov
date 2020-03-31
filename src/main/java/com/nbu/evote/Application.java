@@ -1,4 +1,4 @@
-package com.nbu.egov;
+package com.nbu.evote;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

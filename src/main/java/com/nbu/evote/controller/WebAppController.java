@@ -1,8 +1,7 @@
-package com.nbu.egov.controller;
+package com.nbu.evote.controller;
 
-import com.nbu.egov.entity.Party;
-import com.nbu.egov.repository.PartyRepository;
-import com.nbu.egov.service.PartyService;
+import com.nbu.evote.entity.Party;
+import com.nbu.evote.service.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;

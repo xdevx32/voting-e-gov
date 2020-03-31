@@ -1,4 +1,4 @@
-package com.nbu.egov.entity;
+package com.nbu.evote.entity;
 
 
 import javax.persistence.*;
