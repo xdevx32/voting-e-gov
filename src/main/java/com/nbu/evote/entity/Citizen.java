@@ -1,19 +1,29 @@
 package com.nbu.evote.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import org.springframework.lang.Nullable;
+
+import javax.persistence.*;
 
 @Entity
 public class Citizen {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     private String name;
 
     @OneToOne
     private Ballot ballot;
+
+    public Citizen() {
+    }
+
+    public Citizen(long citizenId) {
+        this.id = citizenId;
+        this.name = "Default name";
+        this.ballot = new Ballot();
+    }
 
     public String getName() {
         return name;
@@ -27,11 +37,11 @@ public class Citizen {
         return ballot;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

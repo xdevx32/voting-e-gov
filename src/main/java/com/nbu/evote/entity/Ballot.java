@@ -1,7 +1,11 @@
 package com.nbu.evote.entity;
 
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.time.LocalDate;
 
 
@@ -16,7 +20,9 @@ import java.time.LocalDate;
 public class Ballot {
 
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    //AUTO WORKS!>>>>>
+    private long id;
 
     LocalDate localDate;
 
@@ -26,11 +32,20 @@ public class Ballot {
     @ManyToOne
     Party party;
 
-    public Long getId() {
+    public Ballot() {
+    }
+
+    public Ballot(long ballotId) {
+        this.id = ballotId;
+        this.localDate = LocalDate.now();
+        this.citizen = new Citizen();
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

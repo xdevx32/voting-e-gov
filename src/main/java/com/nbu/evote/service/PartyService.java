@@ -6,24 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class PartyService {
-
 
     @Autowired
     private PartyRepository partyRepository;
 
     public ArrayList<Party> getAllParties() {
-        ArrayList<Party> parties = new ArrayList<>();
-        partyRepository.findAll()
-                .forEach(parties::add);
+        ArrayList<Party> partyList = new ArrayList<>();
+        partyRepository.findAll().forEach(party -> partyList.add(party));
 
-        return parties;
+
+        return partyList;
     }
 
 
-    public Party getParty(Long id) {
+    public Party getParty(long id) {
         Party party = partyRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Невалиден номер на кандидат: " + id));
         return party;
@@ -45,3 +45,5 @@ public class PartyService {
 
 
 }
+
+

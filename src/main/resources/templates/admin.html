@@ -529,9 +529,9 @@
 <!--                        </div>-->
                         <div id="Tables" class="tab-pane notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
-                                <li><a href="normal-table.html">Добавяне на списък с граждани</a>
+                                <li><a id="add-citizens-custom-element" href="normal-table-citizens.html">Добавяне на списъци с граждани</a>
                                 </li>
-                                <li><a href="data-table.html">Добавяне на списък с партии</a>
+                                <li><a id="add-parties-custom-element" href="normal-table-parties.html">Добавяне на списъци с партии</a>
                                 </li>
                             </ul>
 <!--                        </div>-->
@@ -1195,6 +1195,9 @@
 	<!-- tawk chat JS
 		============================================ -->
 <!--    <script src="js/tawk-chat.js"></script>-->
+
+    <script src="js/party-parser.js"></script>
+    <script type="module" src="https://unpkg.com/papaparse@5.1.1/papaparse.min.js"></script>
 </body>
 
 </html>

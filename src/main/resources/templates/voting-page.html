@@ -57,16 +57,16 @@
                         <hr class="divider my-4">
                         <!-- Implement with for loop with the Party data! -->
                         <div class="grid-container"th:each="party: ${parties}">
-                            <div class="grid-item"  th:text="${party.number +'. '+party.name}"></div>
-                            <input type="checkbox" th:name="${'checkboxG' + party.number}" th:id="${'checkboxG' + party.number}"  class="css-checkbox" th:value="${party.number}"/>
-                            <label class="css-label" th:for="${'checkboxG' + party.number}"></label>
+                            <div class="blt-radio-btn grid-item"  th:text="${party.number +'. '+party.name}"></div>
+                            <input type="radio" th:name="${'radio' + party.number}" class="blt-radio-btn" th:value="${party.number}"/>
+                            <label class="css-label" th:for="${'radio' + party.number}"></label>
                         </div>
                     </div>
 
                     <div class="col-lg-8 align-self-baseline">
 
 
-                        th:
+                        <!--th: -->
 
                         <input type="submit"  class="btn btn-primary btn-xl js-scroll-trigger" href="/vote-success" value="Гласувай"/>
                     </div>
@@ -91,7 +91,7 @@
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
 <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
-<script th:src="@{/js/checkboxes.js}"></script>
+<!--<script th:src="@{/js/checkboxes.js}"></script>-->ss
 
 <!-- Plugin JavaScript -->
 <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
