@@ -1,4 +1,4 @@
-package com.nbu.evote;
+package com.nbu.evote.utility;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

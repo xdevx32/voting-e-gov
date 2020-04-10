@@ -1,7 +1,9 @@
 package com.nbu.evote.controller;
 
-import com.nbu.evote.CSVReaderAndParser;
+import com.nbu.evote.utility.CSVReaderAndParser;
+import com.nbu.evote.service.PartyService;
 import com.opencsv.exceptions.CsvValidationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +20,12 @@ import java.nio.file.Paths;
 @Controller
 public class UploadController {
 
-    //Save the uploaded file to this folder
+    @Autowired
+    private PartyService partyService;
 
     private static String UPLOADED_FOLDER = "src/main/resources/csv/uploaded/";
 
-    @PostMapping("/admin/upload") // //new annotation since 4.3
+    @PostMapping("/admin/upload")
     public String singleFileUpload(@RequestParam("file") MultipartFile file,Model model,
                                    RedirectAttributes redirectAttributes) {
 
@@ -33,17 +36,16 @@ public class UploadController {
 
         try {
 
-            // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
             Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
             Files.write(path, bytes);
 
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
+            CSVReaderAndParser csvReaderAndParser = new CSVReaderAndParser(partyService);
+            csvReaderAndParser.invoke(file.getOriginalFilename());
 
-            //CSVReaderAndParser.invoke(file.getOriginalFilename());
-
-        } catch (IOException e/*| CsvValidationException e*/) {
+        } catch (IOException | CsvValidationException e) {
             e.printStackTrace();
         }
 
