@@ -29,7 +29,6 @@ public class CSVReaderAndParser {
 
     public void invoke(String filename)throws IOException, CsvValidationException {
 
-        //TODO FIX CRASH
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(SAMPLE_CSV_FILE_PATH + filename));
                 CSVReader csvReader = new CSVReader(reader);

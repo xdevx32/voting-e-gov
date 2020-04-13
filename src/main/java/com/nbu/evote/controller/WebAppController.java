@@ -1,5 +1,6 @@
 package com.nbu.evote.controller;
 
+import com.nbu.evote.entity.Ballot;
 import com.nbu.evote.utility.CSVReaderAndParser;
 import com.nbu.evote.entity.Party;
 import com.nbu.evote.service.BallotService;
@@ -11,6 +12,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -69,18 +71,23 @@ public class WebAppController {
         ArrayList<Party> parties = new ArrayList<>();
         parties = partyService.getAllParties();
 
+        Party party = new Party();
         model.addAttribute("parties" , parties);
-
+        model.addAttribute("party", party);
         return "voting-page";
     }
 
-    @RequestMapping(value = "/vote-success")
-    public String voteSuccess(Model model, @ModelAttribute(value="party") Party party){
-        model.addAttribute(party);
-        System.out.println(party);
-        // TODO fix , get the party object properly
-        model.addAttribute("test", 1);
+
+    @RequestMapping(method = RequestMethod.POST, value = "vote-success")
+    public String voteSuccess(Model model, @ModelAttribute Party party){
+        party = partyService.getParty(party.getId());
         model.addAttribute("party", party);
+
+        Ballot ballot = new Ballot();
+        //TODO: Add the rest of the fields and properties
+        ballot.setParty(party);
+        ballotService.addBallot(ballot);
+
         return "vote-success";
     }
 }
