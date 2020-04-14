@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -68,7 +68,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="logo-area">
-                        <a href="#"><img src="img/logo/logo.png" alt="" /></a>
+                        <a href="#"><img src="img/logo/logo-white.png" alt="" /></a>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -598,17 +598,21 @@
 					<div class="breadcomb-list">
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-								<div class="breadcomb-wp">
-									<div class="breadcomb-icon">
-										<i class="notika-icon notika-windows"></i>
-									</div>
-									<div class="breadcomb-ctn">
-										<h2>Добавете листи с граждани</h2>
-<!--										<p>asdfasdf <span class="bread-ntd">използвайте шаблона</span></p>-->
-                                        <input type="file" id="files" multiple="">
-                                        <button id="submit_button" class="no-class">Parse</button>
-									</div>
-								</div>
+                                <div class="breadcomb-wp">
+                                    <div class="breadcomb-icon">
+                                        <i class="notika-icon notika-windows"></i>
+                                    </div>
+                                    <div class="breadcomb-ctn">
+                                        <h2>Добавете списъци с граждани</h2>
+                                        <div th:if="${message}">
+                                            <h2 th:text="${message}"/>
+                                        </div>
+                                        <form method="POST" action="/admin/upload/citizens" enctype="multipart/form-data">
+                                            <input type="file" name="file" /><br/><br/>
+                                            <input type="submit" value="Добави списък" />
+                                        </form>
+                                    </div>
+                                </div>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
 								<div class="breadcomb-report">

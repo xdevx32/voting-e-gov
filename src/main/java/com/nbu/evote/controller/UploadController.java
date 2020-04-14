@@ -1,5 +1,6 @@
 package com.nbu.evote.controller;
 
+import com.nbu.evote.service.CitizenService;
 import com.nbu.evote.utility.CSVReaderAndParser;
 import com.nbu.evote.service.PartyService;
 import com.opencsv.exceptions.CsvValidationException;
@@ -23,10 +24,40 @@ public class UploadController {
     @Autowired
     private PartyService partyService;
 
+    @Autowired
+    private CitizenService citizenService;
+
     private static String UPLOADED_FOLDER = "src/main/resources/csv/uploaded/";
 
-    @PostMapping("/admin/upload")
-    public String singleFileUpload(@RequestParam("file") MultipartFile file,Model model,
+    @PostMapping("/admin/upload/citizens")
+    public String citizenFileUploader(@RequestParam("file") MultipartFile file,Model model,
+                                   RedirectAttributes redirectAttributes) {
+
+        if (file.isEmpty()) {
+            redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
+            return "redirect:/uploadStatus";
+        }
+
+        try {
+
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+            Files.write(path, bytes);
+
+            redirectAttributes.addFlashAttribute("message",
+                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
+            CSVReaderAndParser csvReaderAndParser = new CSVReaderAndParser(citizenService);
+            csvReaderAndParser.invokePartiesUpload(file.getOriginalFilename());
+
+        } catch (IOException | CsvValidationException e) {
+            e.printStackTrace();
+        }
+
+        return "redirect:/uploadStatus";
+    }
+
+    @PostMapping("/admin/upload/parties")
+    public String partyFileUploader(@RequestParam("file") MultipartFile file,Model model,
                                    RedirectAttributes redirectAttributes) {
 
         if (file.isEmpty()) {
@@ -43,7 +74,7 @@ public class UploadController {
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
             CSVReaderAndParser csvReaderAndParser = new CSVReaderAndParser(partyService);
-            csvReaderAndParser.invoke(file.getOriginalFilename());
+            csvReaderAndParser.invokePartiesUpload(file.getOriginalFilename());
 
         } catch (IOException | CsvValidationException e) {
             e.printStackTrace();
@@ -52,6 +83,7 @@ public class UploadController {
         return "redirect:/uploadStatus";
     }
 
+    //TODO: Fix duplicates.
     @GetMapping("/uploadStatus")
     public String uploadStatus(Model model) {
 

@@ -13,6 +13,10 @@ public class Citizen {
 
     private String name;
 
+    private String EGN;
+
+    private String uniqueVoteId;
+
     @OneToOne
     private Ballot ballot;
 
@@ -22,6 +26,8 @@ public class Citizen {
     public Citizen(long citizenId) {
         this.id = citizenId;
         this.name = "Default name";
+        this.EGN = "";
+        this.uniqueVoteId = "";
         this.ballot = new Ballot();
     }
 
@@ -47,5 +53,21 @@ public class Citizen {
 
     public void setBallot(Ballot ballot) {
         this.ballot = ballot;
+    }
+
+    public String getEGN() {
+        return EGN;
+    }
+
+    public void setEGN(String EGN) {
+        this.EGN = EGN;
+    }
+
+    public String getUniqueVoteId() {
+        return uniqueVoteId;
+    }
+
+    public void setUniqueVoteId(String uniqueVoteId) {
+        this.uniqueVoteId = uniqueVoteId;
     }
 }
