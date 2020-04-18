@@ -41,4 +41,7 @@ public class CitizenService {
         citizenRepository.delete(citizen);
     }
 
+    public Citizen getCitizenByUniqueVoteIdAndEGN(String uniqueVoteId, String egn) {
+        return citizenRepository.findByEGNAndUniqueVoteId(uniqueVoteId, egn);
+    }
 }
