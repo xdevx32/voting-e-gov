@@ -5,6 +5,8 @@ import com.nbu.evote.utility.CSVReaderAndParser;
 import com.nbu.evote.service.PartyService;
 import com.opencsv.exceptions.CsvValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,7 +49,7 @@ public class UploadController {
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
             CSVReaderAndParser csvReaderAndParser = new CSVReaderAndParser(citizenService);
-            csvReaderAndParser.invokePartiesUpload(file.getOriginalFilename());
+            csvReaderAndParser.invokeCitizensUpload(file.getOriginalFilename());
 
         } catch (IOException | CsvValidationException e) {
             e.printStackTrace();
@@ -88,6 +90,16 @@ public class UploadController {
     public String uploadStatus(Model model) {
 
         return "uploadStatus";
+    }
+
+    // За кирилицата UTF-8
+    @Bean
+    public ReloadableResourceBundleMessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("classpath:messages");
+        messageSource.setCacheSeconds(3600);
+        messageSource.setDefaultEncoding("UTF-8");
+        return messageSource;
     }
 
 }

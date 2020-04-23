@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -104,7 +105,8 @@ public class WebAppController {
         //TODO: Add the rest of the fields and properties
         ballot.setParty(party);
         ballot.setCitizen(currentCitizen);
-        ballot.setLocalDate(LocalDate.now());
+        ballot.setDate(LocalDate.now());
+        ballot.setTime(LocalTime.now());
         ballotService.addBallot(ballot);
 
         assert currentCitizen != null;

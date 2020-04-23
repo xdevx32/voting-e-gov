@@ -31,7 +31,7 @@ public class CSVReaderAndParser {
 
     private static final String SAMPLE_CSV_FILE_PATH = "src/main/resources/csv/uploaded/";
 
-    public void invokePartiesUpload(String filename)throws IOException, CsvValidationException {
+    public void invokeCitizensUpload(String filename)throws IOException, CsvValidationException {
 
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(SAMPLE_CSV_FILE_PATH + filename));
@@ -42,7 +42,7 @@ public class CSVReaderAndParser {
             ArrayList<Citizen> listOfRecords = new ArrayList<>();
             while ((nextRecord = csvReader.readNext()) != null) {
 
-                if(!nextRecord[1].equals("name")) {
+                if(!nextRecord[0].equals("name")) {
                     Citizen citizen = new Citizen();
 
                     citizen.setName(nextRecord[0]);
@@ -55,7 +55,7 @@ public class CSVReaderAndParser {
         }
     }
 
-    public void invokeCitizensUpload(String filename)throws IOException, CsvValidationException {
+    public void invokePartiesUpload(String filename)throws IOException, CsvValidationException {
 
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(SAMPLE_CSV_FILE_PATH + filename));
