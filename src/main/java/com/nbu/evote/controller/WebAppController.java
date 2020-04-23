@@ -2,19 +2,17 @@ package com.nbu.evote.controller;
 
 import com.nbu.evote.entity.Ballot;
 import com.nbu.evote.entity.Citizen;
-import com.nbu.evote.utility.CSVReaderAndParser;
 import com.nbu.evote.entity.Party;
 import com.nbu.evote.service.BallotService;
 import com.nbu.evote.service.CitizenService;
 import com.nbu.evote.service.PartyService;
-import com.opencsv.exceptions.CsvValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -102,11 +100,11 @@ public class WebAppController {
         model.addAttribute("party", party);
 
         Ballot ballot = new Ballot();
-        //TODO: Add the rest of the fields and properties
+
         ballot.setParty(party);
         ballot.setCitizen(currentCitizen);
-        ballot.setDate(LocalDate.now());
-        ballot.setTime(LocalTime.now());
+        ballot.setDate(LocalDate.now().plusDays(1));
+        ballot.setTime(LocalTime.now().plusHours(2));
         ballotService.addBallot(ballot);
 
         assert currentCitizen != null;

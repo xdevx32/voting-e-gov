@@ -1,8 +1,7 @@
 package com.nbu.evote.entity;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.*;
 
 
 /***
@@ -35,9 +34,8 @@ public class Ballot {
 
     public Ballot(long ballotId) {
         this.id = ballotId;
-        this.date = LocalDate.now();
-        this.time = LocalTime.now();
-        //Add DateTime
+        this.date = LocalDate.now().plusDays(1);
+        this.time = LocalTime.now().plusHours(2);
         this.citizen = new Citizen();
     }
 

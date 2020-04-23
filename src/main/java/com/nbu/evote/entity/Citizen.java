@@ -18,6 +18,7 @@ public class Citizen {
     private String uniqueVoteId;
 
     @OneToOne
+    @Nullable
     private Ballot ballot;
 
     public Citizen() {
