@@ -50,7 +50,7 @@ public class WebAppController {
         model.addAttribute("parties" , parties);
 
 
-        return "index-bs";
+        return "../static/index-bs";
     }
 
     @RequestMapping("/admin")
@@ -59,7 +59,7 @@ public class WebAppController {
         model.addAttribute("username", "Acho");
         model.addAttribute("mode", appMode);
 
-        return "admin";
+        return "../static/admin";
     }
 
     @RequestMapping(value = "/vote", method= RequestMethod.GET)
@@ -70,7 +70,7 @@ public class WebAppController {
 
         citizen = new Citizen();
 
-        return "voting-page";
+        return "../static/voting-page";
     }
 
 
@@ -90,7 +90,7 @@ public class WebAppController {
         model.addAttribute("citizen", real_citizen);
         currentCitizen = real_citizen;
 
-        return "voting-page";
+        return "../static/voting-page";
     }
 
 
@@ -111,7 +111,23 @@ public class WebAppController {
         currentCitizen.setBallot(ballot);
         citizenService.updateCitizen(currentCitizen);
 
-        return "vote-success";
+        return "../static/vote-success";
     }
 
+    @RequestMapping("/barchart")
+    public String barChart(Model model) {
+        model.addAttribute("datetime", new Date());
+        model.addAttribute("username", "Acho");
+        model.addAttribute("mode", appMode);
+        model.addAttribute("mykey", "myvalue");
+        ArrayList myList = new ArrayList();
+        Party p = partyService.getParty(42);
+        myList.add(p);
+
+        Party p2 = partyService.getParty(43);
+        myList.add(p2);
+        model.addAttribute(myList);
+
+        return "../static/bar-charts";
+    }
 }

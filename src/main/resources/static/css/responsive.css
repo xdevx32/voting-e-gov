@@ -5,6 +5,7 @@
 	}
 	.main-menu-area.mg-t-80-b-40{
 		margin-top:40px;
+		margin-bottom:-45px !important;
 	}
 	ul.notika-menu-wrap li a {
 		padding: 15px 20px;
