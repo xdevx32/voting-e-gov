@@ -64,8 +64,18 @@ public class Party {
         this.ballots = ballots;
     }
 
+    public void addBallot(Ballot ballot) {
+        this.ballots.add(ballot);
+    }
+
+    public Integer getBallotsCount() {
+        return this.ballots.size();
+    }
+
     @Override
     public String toString() {
         return "Party{" + "id=" + id + ", name=" + name + ", number=" + number + '}';
     }
+
+
 }

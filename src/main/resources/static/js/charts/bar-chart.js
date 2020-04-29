@@ -4,11 +4,12 @@
 	/*  1.  Bar Chart
 	/*----------------------------------------*/
 
+    var partiesList = [];
 	var ctx = document.getElementById("barchart1");
 	var barchart1 = new Chart(ctx, {
 		type: 'bar',
 		data: {
-			labels: ["ГЕРБ", "ВМРО", "БСП", "СДС", "АТАКА", "Марешки", "Спаси София"],
+			labels: partiesList/*["ГЕРБ", "ВМРО", "БСП", "СДС", "АТАКА", "Марешки", "Спаси София"]*/,
 			datasets: [{
 				label: 'Гласове за кандидати',
 				data: [3560, 9000, 400, 522, 2, 100],

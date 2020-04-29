@@ -17,6 +17,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 public class WebAppController {
@@ -109,6 +112,7 @@ public class WebAppController {
 
         assert currentCitizen != null;
         currentCitizen.setBallot(ballot);
+        party.addBallot(ballot);
         citizenService.updateCitizen(currentCitizen);
 
         return "../static/vote-success";
@@ -117,16 +121,27 @@ public class WebAppController {
     @RequestMapping("/barchart")
     public String barChart(Model model) {
         model.addAttribute("datetime", new Date());
-        model.addAttribute("username", "Acho");
         model.addAttribute("mode", appMode);
-        model.addAttribute("mykey", "myvalue");
-        ArrayList myList = new ArrayList();
-        Party p = partyService.getParty(42);
-        myList.add(p);
+        ArrayList<Party> partiesList = partyService.getAllParties();
+        List<String> partyNamesList = partiesList.stream()
+                .map(Party::getName)
+                .collect(Collectors.toList());
 
-        Party p2 = partyService.getParty(43);
-        myList.add(p2);
-        model.addAttribute(myList);
+        List<Integer> partyBallotsCountList = partiesList.stream()
+                .map(Party::getBallotsCount)
+                .collect(Collectors.toList());
+
+//        //test
+//        List<Integer> partyBallotsCountList = new ArrayList<>();
+//        partyBallotsCountList.add(400);
+//        partyBallotsCountList.add(1500);
+//        partyBallotsCountList.add(700);
+//        partyBallotsCountList.add(345);
+//        partyBallotsCountList.add(420);
+//        partyBallotsCountList.add(100);
+
+        model.addAttribute("partiesNamesList", partyNamesList);
+        model.addAttribute("ballotsCountList", partyBallotsCountList);
 
         return "../static/bar-charts";
     }

@@ -8,19 +8,19 @@
 	var basiclinechart = new Chart(ctx, {
 		type: 'line',
 		data: {
-			labels: ["January", "February", "March"],
+			labels: ["9:00", "10:00", "11:00", "12:00", "13:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"],
 			datasets: [{
-				label: "My First dataset",
+				label: "Гласове през първи ден на кампанията.",
 				fill: false,
                 backgroundColor: '#00c292',
 				borderColor: '#00c292',
-				data: [9, 12, 19]
+				data: [16, 344, 445, 442, 155, 820, 433, 20, 150, 150, 3]
             }, {
-                label: "My Second dataset",
+                label: "Гласове през втори ден на кампанията.",
 				fill: false,
                 backgroundColor: '#fb9678',
 				borderColor: '#fb9678',
-				data: [-12, -3, -4]
+				data: [12, 34, 45, 42, 100, 80, 43, 200, 150, 300, 500]
 				
 		}]
 		},
@@ -43,14 +43,14 @@
 					display: true,
 					scaleLabel: {
 						display: true,
-						labelString: 'Month'
+						labelString: 'Час за подаден вот'
 					}
 				}],
 				yAxes: [{
 					display: true,
 					scaleLabel: {
 						display: true,
-						labelString: 'Value'
+						labelString: 'Брой гласували'
 					}
 				}]
 			}
