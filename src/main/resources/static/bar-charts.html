@@ -720,9 +720,13 @@
     <script src="js/charts/Chart.js"></script>
 <!--    <script src="js/charts/bar-chart.js"></script>-->
     <script th:inline="javascript">
+
     /* <![CDATA[*/
         var partyNamesList = /*[[${partiesNamesList}]]*/;;
         var partiesBallotsCount =  /*[[${ballotsCountList}]]*/;
+        var ballotsTimelineListFirstDay =  /*[[${ballotsTimelineListFirstDay}]]*/;
+        var ballotsTimelineListSecondDay = /*[[${ballotsTimelineListSecondDay}]]*/;
+
         (function ($) {
          "use strict";
              /*----------------------------------------*/
@@ -789,13 +793,13 @@
                     fill: false,
                     backgroundColor: '#00c292',
                     borderColor: '#00c292',
-                    data: [16, 344, 445, 442, 155, 820, 433, 20, 150, 150, 3]
+                    data: ballotsTimelineListFirstDay /*[16, 344, 445, 442, 155, 820, 433, 20, 150, 150, 3]*///TestData First day
                 }, {
                     label: "Гласове през втори ден на кампанията.",
                     fill: false,
                     backgroundColor: '#fb9678',
                     borderColor: '#fb9678',
-                    data: [12, 34, 45, 42, 100, 80, 43, 200, 150, 300, 500]
+                    data: ballotsTimelineListSecondDay /*[12, 34, 45, 42, 100, 80, 43, 200, 150, 300, 500]*///TestData Second day
 
             }]
             },

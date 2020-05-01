@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -131,17 +128,168 @@ public class WebAppController {
                 .map(Party::getBallotsCount)
                 .collect(Collectors.toList());
 
-//        //test
-//        List<Integer> partyBallotsCountList = new ArrayList<>();
-//        partyBallotsCountList.add(400);
-//        partyBallotsCountList.add(1500);
-//        partyBallotsCountList.add(700);
-//        partyBallotsCountList.add(345);
-//        partyBallotsCountList.add(420);
-//        partyBallotsCountList.add(100);
+        List<Ballot> ballotsList = ballotService.getBallots();
+
+        //Hardcoded values of section days
+        LocalDate firstDay = LocalDate.now();
+        LocalDate secondDay = LocalDate.now().plusDays(1);
+
+
+        List<LocalTime> voteTimeListFirstDay = ballotsList.stream()
+                .filter(b -> b.getDate().isEqual(firstDay))
+                .map(Ballot::getTime)
+                .collect(Collectors.toList());
+
+        List<String> voteTimeListFirstDayStrings = voteTimeListFirstDay.stream()
+                .map(LocalTime::toString)
+                .collect(Collectors.toList());
+
+        List<LocalTime> voteTimeListSecondDay = ballotsList.stream()
+                .filter(b -> b.getDate().isEqual(secondDay))
+                .map(Ballot::getTime)
+                .collect(Collectors.toList());
+
+
+        List<String> voteTimeListSecondDayStrings = voteTimeListSecondDay.stream()
+                .map(LocalTime::toString)
+                .collect(Collectors.toList());
+
+
+        // Assigning values to list of hours
+        // Example
+        // labels: ["9:00", "10:00", "11:00", "12:00", "13:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"],
+        // Output list should look like:
+        // data: [16, 344, 445, 442, 155, 820, 433, 20, 150, 150, 3]
+
+        HashMap<String, Integer> voteCountForFirstDayInHoursFormatted = new HashMap<>();
+        voteCountForFirstDayInHoursFormatted.put("9",0);
+        voteCountForFirstDayInHoursFormatted.put("10",0);
+        voteCountForFirstDayInHoursFormatted.put("11",0);
+        voteCountForFirstDayInHoursFormatted.put("12",0);
+        voteCountForFirstDayInHoursFormatted.put("13",0);
+        voteCountForFirstDayInHoursFormatted.put("15",0);
+        voteCountForFirstDayInHoursFormatted.put("16",0);
+        voteCountForFirstDayInHoursFormatted.put("17",0);
+        voteCountForFirstDayInHoursFormatted.put("18",0);
+        voteCountForFirstDayInHoursFormatted.put("19",0);
+        voteCountForFirstDayInHoursFormatted.put("20",0);
+        voteCountForFirstDayInHoursFormatted.put("21",0);
+
+        HashMap<String, Integer> voteCountForSecondDayInHoursFormatted = new HashMap<>();
+        voteCountForSecondDayInHoursFormatted.put("9",0);
+        voteCountForSecondDayInHoursFormatted.put("10",0);
+        voteCountForSecondDayInHoursFormatted.put("11",0);
+        voteCountForSecondDayInHoursFormatted.put("12",0);
+        voteCountForSecondDayInHoursFormatted.put("13",0);
+        voteCountForSecondDayInHoursFormatted.put("15",0);
+        voteCountForSecondDayInHoursFormatted.put("16",0);
+        voteCountForSecondDayInHoursFormatted.put("17",0);
+        voteCountForSecondDayInHoursFormatted.put("18",0);
+        voteCountForSecondDayInHoursFormatted.put("19",0);
+        voteCountForSecondDayInHoursFormatted.put("20",0);
+        voteCountForSecondDayInHoursFormatted.put("21",0);
+
+        Integer startHour = 9;
+
+
+        for ( int index=0 ; index<voteTimeListFirstDayStrings.size() ; index++) {
+
+            if (voteTimeListFirstDay.get(index).getHour() == startHour) {
+
+                Integer finalStartHour = startHour;
+                Integer numberOfVotesForExactHour = voteTimeListFirstDay.stream()
+                        .filter(p -> p.getHour() == finalStartHour)
+                        .map(LocalTime::getHour)
+                        .reduce(0, (a, b) -> a + b)/startHour;
+
+                if(startHour < 10){
+                    String stringToPut = "0".concat(String.valueOf(startHour));
+                    voteCountForFirstDayInHoursFormatted.put(stringToPut , numberOfVotesForExactHour);
+
+                } else {
+                    voteCountForFirstDayInHoursFormatted.put(String.valueOf(startHour),numberOfVotesForExactHour);
+                }
+            }
+
+            if (startHour == 13) {
+                startHour += 2;
+            } else {
+                startHour++;
+            }
+        }
+
+
+        HashMap<String, String> map = new HashMap<String, String>();
+
+        voteCountForFirstDayInHoursFormatted.put("09", voteCountForFirstDayInHoursFormatted.remove("9"));
+        // TreeMap to store values of HashMap
+        TreeMap<String, Integer> sorted = new TreeMap<>();
+        // Copy all data from hashMap into TreeMap
+        sorted.putAll(voteCountForFirstDayInHoursFormatted);
+        Collection<Integer> values = sorted.values();
+
+        List<String> voteTimeListFirstDayStringsSorted = new ArrayList<>();
+        ArrayList<Integer> listOfValues = new ArrayList<Integer>(values);
+        for (Integer value: listOfValues) {
+            voteTimeListFirstDayStringsSorted.add(String.valueOf(value));
+        }
+
+
+
+        // Second day
+
+        startHour = 9;
+
+
+        for ( int index=0 ; index<voteTimeListSecondDayStrings.size() ; index++) {
+
+            if (voteTimeListSecondDay.get(index).getHour() == startHour) {
+
+                Integer finalStartHour = startHour;
+                Integer numberOfVotesForExactHour = voteTimeListSecondDay.stream()
+                        .filter(p -> p.getHour() == finalStartHour)
+                        .map(LocalTime::getHour)
+                        .reduce(0, (a, b) -> a + b)/startHour;
+
+                if(startHour < 10){
+                    String stringToPut = "0".concat(String.valueOf(startHour));
+                    voteCountForSecondDayInHoursFormatted.put(stringToPut , numberOfVotesForExactHour);
+
+                } else {
+                    voteCountForSecondDayInHoursFormatted.put(String.valueOf(startHour),numberOfVotesForExactHour);
+                }
+            }
+
+            if (startHour == 13) {
+                startHour += 2;
+            } else {
+                startHour++;
+            }
+        }
+
+
+        map = new HashMap<String, String>();
+
+        voteCountForSecondDayInHoursFormatted.put("09", voteCountForSecondDayInHoursFormatted.remove("9"));
+        // TreeMap to store values of HashMap
+        sorted = new TreeMap<>();
+        // Copy all data from hashMap into TreeMap
+        sorted.putAll(voteCountForSecondDayInHoursFormatted);
+        values = sorted.values();
+
+        List<String> voteTimeListSecondDayStringsSorted = new ArrayList<>();
+        listOfValues = new ArrayList<Integer>(values);
+        for (Integer value: listOfValues) {
+            voteTimeListSecondDayStringsSorted.add(String.valueOf(value));
+        }
+
+        //End second day
+
 
         model.addAttribute("partiesNamesList", partyNamesList);
         model.addAttribute("ballotsCountList", partyBallotsCountList);
+        model.addAttribute("ballotsTimelineListFirstDay", voteTimeListFirstDayStringsSorted);
+        model.addAttribute("ballotsTimelineListSecondDay", voteTimeListSecondDayStringsSorted);
 
         return "../static/bar-charts";
     }
