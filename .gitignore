@@ -32,3 +32,4 @@ build/
 
 src/main/resources/hibernate.cfg.xml
 src/main/resources/csv
+src/main/java/com/.DS_Store
