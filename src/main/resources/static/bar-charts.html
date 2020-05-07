@@ -722,11 +722,11 @@
     <script th:inline="javascript">
 
     /* <![CDATA[*/
-        var partyNamesList = /*[[${partiesNamesList}]]*/;;
+        var partyNamesList = /*[[${partiesNamesList}]]*/;
         var partiesBallotsCount =  /*[[${ballotsCountList}]]*/;
         var ballotsTimelineListFirstDay =  /*[[${ballotsTimelineListFirstDay}]]*/;
         var ballotsTimelineListSecondDay = /*[[${ballotsTimelineListSecondDay}]]*/;
-
+        var dateOfVote = /*[[${dateOfVoteFromBackend}]]*/;
         (function ($) {
          "use strict";
              /*----------------------------------------*/
@@ -807,7 +807,7 @@
                 responsive: true,
                 title:{
                     display:true,
-                    text:'Графика за гласове по час и ден'
+                    text:'Графика за гласове по час и ден. ' + dateOfVote
                 },
                 tooltips: {
                     mode: 'index',
