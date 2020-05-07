@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 
 @Controller
 public class WebAppController {
+
     private String appMode;
 
     @Autowired
@@ -64,9 +65,6 @@ public class WebAppController {
 
     @RequestMapping(value = "/vote", method= RequestMethod.GET)
     public String vote(Model model, Citizen citizen){
-        model.addAttribute("datetime", new Date());
-        model.addAttribute("username", "Angel");
-        model.addAttribute("mode", appMode);
 
         citizen = new Citizen();
 
@@ -167,6 +165,7 @@ public class WebAppController {
         voteCountForFirstDayInHoursFormatted.put("11",0);
         voteCountForFirstDayInHoursFormatted.put("12",0);
         voteCountForFirstDayInHoursFormatted.put("13",0);
+        voteCountForFirstDayInHoursFormatted.put("14",0);
         voteCountForFirstDayInHoursFormatted.put("15",0);
         voteCountForFirstDayInHoursFormatted.put("16",0);
         voteCountForFirstDayInHoursFormatted.put("17",0);
@@ -181,6 +180,7 @@ public class WebAppController {
         voteCountForSecondDayInHoursFormatted.put("11",0);
         voteCountForSecondDayInHoursFormatted.put("12",0);
         voteCountForSecondDayInHoursFormatted.put("13",0);
+        voteCountForSecondDayInHoursFormatted.put("14",0);
         voteCountForSecondDayInHoursFormatted.put("15",0);
         voteCountForSecondDayInHoursFormatted.put("16",0);
         voteCountForSecondDayInHoursFormatted.put("17",0);
@@ -211,11 +211,11 @@ public class WebAppController {
                 }
             }
 
-            if (startHour == 13) {
-                startHour += 2;
-            } else {
+//            if (startHour == 13) {
+//                startHour += 2;
+//            } else {
                 startHour++;
-            }
+//            }
         }
 
 
@@ -260,11 +260,11 @@ public class WebAppController {
                 }
             }
 
-            if (startHour == 13) {
-                startHour += 2;
-            } else {
+//            if (startHour == 13) {
+//                startHour += 2;
+//            } else {
                 startHour++;
-            }
+//            }
         }
 
 
