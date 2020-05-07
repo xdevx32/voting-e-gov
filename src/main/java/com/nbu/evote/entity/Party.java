@@ -19,6 +19,8 @@ public class Party {
 
     private String number;
 
+    private String slogan;
+
     private String imageUrl;
 
     @OneToMany
@@ -31,6 +33,7 @@ public class Party {
         this.id = partyId;
         this.name = "Default name";
         this.number = "44";
+        this.slogan = "Vote for us!";
         this.imageUrl = "https://atlantaplanningguys.com/wp-content/uploads/2009/10/question-mark-image-200x300.jpg";
         this.ballots = new HashSet<>();
     }
@@ -77,6 +80,14 @@ public class Party {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public String getSlogan() {
+        return slogan;
+    }
+
+    public void setSlogan(String slogan) {
+        this.slogan = slogan;
     }
 
     public void setImageUrl(String imageUrl) {

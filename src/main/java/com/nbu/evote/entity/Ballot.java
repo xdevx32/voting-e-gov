@@ -78,4 +78,8 @@ public class Ballot {
     public void setParty(Party party) {
         this.party = party;
     }
+
+    public String getTimeString() {
+        return time.toString();
+    }
 }
