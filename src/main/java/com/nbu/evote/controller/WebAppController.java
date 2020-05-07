@@ -17,6 +17,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 @Controller
 public class WebAppController {
@@ -120,15 +123,61 @@ public class WebAppController {
         ArrayList<Party> partiesList = partyService.getAllParties();
         List<String> partyNamesList = partiesList.stream()
                 .map(Party::getName)
-                .collect(Collectors.toList());
+                .collect(toList());
 
         List<Integer> partyBallotsCountList = partiesList.stream()
                 .map(Party::getBallotsCount)
-                .collect(Collectors.toList());
+                .collect(toList());
 
         List<Ballot> ballotsList = ballotService.getBallots();
 
+        /**
+         *
+         *
+         *  TODO!!! DISCUSS IF NEEDED - REMOVE FOR """PRODUCTION"""" THINK!!!!
+         *
+         *  THIS PIECE OF CODE SETS ALL BALLOT DATES TO
+         *  TODAY'S DATE. ONLY IN OBJECTS BUT DOES NOT WRITE TO
+         *  DATABASE. SO IF YOU WANT TO REMOVE IT
+         *  JUST REMOVE THE STREAM OPERATION BELOW.
+         *  THAT WAY , WE CAN VISUALISE MORE DATA
+         *  IN ADMIN SECTION. THIS CASE IS ABSOLUTELY UNREALISTIC AND
+         *  MUST NOT BE SHIPPED!!!
+         *
+         *
+         *
+         *  ONLY TESTING AND DEVELOPING!!!!
+         *
+         */
+
+        List<Ballot> heads = new ArrayList<>();
+        List<Ballot> tails = new ArrayList<>();
+
+        heads = ballotsList.stream()
+                .filter(i -> i.getId() % 2 == 0)
+                .collect(toList());
+
+        heads.stream().forEach(f -> f.setDate(LocalDate.now()));
+
+        tails = ballotsList.stream()
+                .filter(i -> i.getId() % 2 != 0)
+                .collect(toList());
+
+        tails.stream().forEach(f -> f.setDate(LocalDate.now().plusDays(1)));
+
+        //Concatenating the two newly modified streams.
+
+        ballotsList = Stream
+                .concat(heads.stream(), tails.stream())
+                .collect(toList());
+        /*
+        *
+        *
+        *
+        *
+         */
         //Hardcoded values of section days
+        //TODO!!!!!!! Discuss!!!!
         LocalDate firstDay = LocalDate.now();
         LocalDate secondDay = LocalDate.now().plusDays(1);
 
@@ -136,21 +185,22 @@ public class WebAppController {
         List<LocalTime> voteTimeListFirstDay = ballotsList.stream()
                 .filter(b -> b.getDate().isEqual(firstDay))
                 .map(Ballot::getTime)
-                .collect(Collectors.toList());
+//                .map(Ballot::getTimeString)
+                .collect(toList());
 
         List<String> voteTimeListFirstDayStrings = voteTimeListFirstDay.stream()
                 .map(LocalTime::toString)
-                .collect(Collectors.toList());
+                .collect(toList());
 
         List<LocalTime> voteTimeListSecondDay = ballotsList.stream()
                 .filter(b -> b.getDate().isEqual(secondDay))
                 .map(Ballot::getTime)
-                .collect(Collectors.toList());
+                .collect(toList());
 
 
         List<String> voteTimeListSecondDayStrings = voteTimeListSecondDay.stream()
                 .map(LocalTime::toString)
-                .collect(Collectors.toList());
+                .collect(toList());
 
 
         // Assigning values to list of hours
@@ -194,7 +244,7 @@ public class WebAppController {
 
         for ( int index=0 ; index<voteTimeListFirstDayStrings.size() ; index++) {
 
-            if (voteTimeListFirstDay.get(index).getHour() == startHour) {
+            if (voteTimeListFirstDay.get(index).getHour() < startHour) {
 
                 Integer finalStartHour = startHour;
                 Integer numberOfVotesForExactHour = voteTimeListFirstDay.stream()
@@ -237,13 +287,11 @@ public class WebAppController {
 
 
         // Second day
-
         startHour = 9;
-
 
         for ( int index=0 ; index<voteTimeListSecondDayStrings.size() ; index++) {
 
-            if (voteTimeListSecondDay.get(index).getHour() == startHour) {
+            if (voteTimeListSecondDay.get(index).getHour() > startHour) {
 
                 Integer finalStartHour = startHour;
                 Integer numberOfVotesForExactHour = voteTimeListSecondDay.stream()
@@ -284,12 +332,16 @@ public class WebAppController {
         }
 
         //End second day
+        // BUG ABOVE. FIX IT!
 
 
+
+        String dateOfVoteFromBackend = firstDay.toString();
         model.addAttribute("partiesNamesList", partyNamesList);
         model.addAttribute("ballotsCountList", partyBallotsCountList);
         model.addAttribute("ballotsTimelineListFirstDay", voteTimeListFirstDayStringsSorted);
         model.addAttribute("ballotsTimelineListSecondDay", voteTimeListSecondDayStringsSorted);
+        model.addAttribute("dateOfVoteFromBackend", dateOfVoteFromBackend);
 
         return "../static/bar-charts";
     }
