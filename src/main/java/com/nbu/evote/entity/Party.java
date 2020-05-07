@@ -19,6 +19,8 @@ public class Party {
 
     private String number;
 
+    private String imageUrl;
+
     @OneToMany
     Set<Ballot> ballots = new HashSet<>();
 
@@ -29,6 +31,7 @@ public class Party {
         this.id = partyId;
         this.name = "Default name";
         this.number = "44";
+        this.imageUrl = "https://atlantaplanningguys.com/wp-content/uploads/2009/10/question-mark-image-200x300.jpg";
         this.ballots = new HashSet<>();
     }
 
@@ -72,6 +75,13 @@ public class Party {
         return this.ballots.size();
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
     @Override
     public String toString() {
         return "Party{" + "id=" + id + ", name=" + name + ", number=" + number + '}';
