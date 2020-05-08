@@ -67,7 +67,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="logo-area">
-                        <a href="#"><img src="img/logo/logo.png" alt="" /></a>
+                        <a href="/admin"><img src="img/logo/logo.png" alt="" /></a>
                     </div>
                 </div>
             </div>
@@ -272,6 +272,9 @@
     <!-- Charts JS
 		============================================ -->
     <script src="js/charts/Chart.js"></script>
+
+    <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+    <style src="https://printjs-4de6.kxcdn.com/print.min.css"></style>
 <!--    <script src="js/charts/bar-chart.js"></script>-->
     <script th:inline="javascript">
 
@@ -281,149 +284,10 @@
         var ballotsTimelineListFirstDay =  /*[[${ballotsTimelineListFirstDay}]]*/;
         var ballotsTimelineListSecondDay = /*[[${ballotsTimelineListSecondDay}]]*/;
         var dateOfVote = /*[[${dateOfVoteFromBackend}]]*/;
-        (function ($) {
-         "use strict";
-             /*----------------------------------------*/
-            /*  1.  Bar Chart
-            /*----------------------------------------*/
 
-            var partiesList = [];
-            var ctx = document.getElementById("barchart1");
-            var barchart1 = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: partyNamesList /*["ГЕРБ", "ВМРО", "БСП", "СДС", "АТАКА", "Марешки", "Спаси София"]*/,
-                    datasets: [{
-                        label: 'Гласове за кандидати',
-                        data: partiesBallotsCount,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgb(50,205,50, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255,99,132,1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    title:{
-                        display:true,
-                        text:'Графика - брой гласове на партия'
-                    },
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero:true
-                            }
-                        }]
-                    }
-                }
-            });
-
-           //TODO: Pass hours and votes to fill arrays
-         /*----------------------------------------*/
-        /*  1.  Basic Line Chart
-        /*----------------------------------------*/
-        var ctx = document.getElementById("basiclinechart");
-        var basiclinechart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"],
-                datasets: [{
-                    label: "Гласове през първи ден на кампанията.",
-                    fill: false,
-                    backgroundColor: '#00c292',
-                    borderColor: '#00c292',
-                    data: ballotsTimelineListFirstDay /*[16, 344, 445, 442, 155, 820, 433, 20, 150, 150, 3]*///TestData First day
-                }, {
-                    label: "Гласове през втори ден на кампанията.",
-                    fill: false,
-                    backgroundColor: '#fb9678',
-                    borderColor: '#fb9678',
-                    data: ballotsTimelineListSecondDay /*[12, 34, 45, 42, 100, 80, 43, 200, 150, 300, 500]*///TestData Second day
-
-            }]
-            },
-            options: {
-                responsive: true,
-                title:{
-                    display:true,
-                    text:'Графика за гласове по час и ден. ' + dateOfVote
-                },
-                tooltips: {
-                    mode: 'index',
-                    intersect: false,
-                },
-                hover: {
-                    mode: 'nearest',
-                    intersect: true
-                },
-                scales: {
-                    xAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Час за подаден вот'
-                        }
-                    }],
-                    yAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Брой гласували'
-                        }
-                    }]
-                }
-            }
-        });
-
-        })(jQuery);
-
-
-
-    $(window).on('load', function() {
-        printBarChart();
-    });
-
-    var canvas=document.getElementById("basiclinechart");
-    var canvas2=document.getElementById("barchart1");
-
-    function printLineChart(){
-        var win=window.open();
-        win.document.write("<html><body><br><img src='"+canvas.toDataURL()+"'/></body></html>");
-        win.print();
-    }
-
-
-
-    function printBarChart(){
-        var win=window.open();
-        win.document.write("<br><img src='"+canvas2.toDataURL()+"'/>");
-        win.focus();
-        win.print();
-    }
-
-    function printBothCharts(){
-        var win=window.open();
-        win.document.write("<br><img src='"+canvas.toDataURL()+"'/>");
-        win.document.write("<br><img src='"+canvas2.toDataURL()+"'/>");
-        win.focus();
-        win.print();
-    }
-
+        var importedInlineScriptForBarCharts = document.createElement('script');
+        importedInlineScriptForBarCharts.src = 'js/charts/customCharts.js';
+        document.head.appendChild(importedInlineScriptForBarCharts);
 
     /*]]>*/
 
