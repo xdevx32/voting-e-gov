@@ -116,6 +116,16 @@ public class WebAppController {
         return "../static/vote-success";
     }
 
+    @RequestMapping("/uploadParties")
+    public String uploadParties(Model model) {
+        return "../static/normal-table-parties";
+    }
+
+    @RequestMapping("/uploadCitizens")
+    public String uploadCitizens(Model model) {
+        return "../static/normal-table-citizens";
+    }
+
     @RequestMapping("/barchart")
     public String barChart(Model model) {
         model.addAttribute("datetime", new Date());

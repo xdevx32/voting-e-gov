@@ -113,11 +113,25 @@
 
 
 <!-- Footer -->
-<footer class="bg-light py-5">
-    <div class="container">
-        <div class="small text-center text-muted">Всички права запазени &copy; 2019 - Университетски проект</div>
-    </div>
-</footer>
+
+
+<!-- IF CUSTOMER IS ANONYMOUS -->
+<div th:if="${citizen.name}">
+    <footer id="footer-copyright-footer" class="bg-light py-5">
+        <div class="container">
+            <div class="small text-center text-muted">Всички права запазени &copy; 2019 - Университетски проект</div>
+        </div>
+    </footer>
+</div>
+<!-- ELSE -->
+<div th:unless="${citizen.name}">
+    <footer id="footerr-copyright-footer" class="bg-light py-5">
+        <div class="container">
+            <div class="small text-center text-muted">Всички права запазени &copy; 2019 - Университетски проект</div>
+        </div>
+    </footer>
+</div>
+
 
 <!-- Bootstrap core JavaScript -->
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
