@@ -180,7 +180,7 @@ public class WebAppController {
                 .filter(i -> i.getId() % 2 != 0)
                 .collect(toList());
 
-        tails.stream().forEach(f -> f.setDate(LocalDate.now().plusDays(1)));
+        tails.stream().forEach(f -> f.setDate(LocalDate.now().minusYears(1)));
 
         //Concatenating the two newly modified streams.
 
@@ -195,12 +195,12 @@ public class WebAppController {
          */
         //Hardcoded values of section days
         //TODO!!!!!!! Discuss!!!!
-        LocalDate firstDay = LocalDate.now();
-        LocalDate secondDay = LocalDate.now().plusDays(1);
+        LocalDate currentYear = LocalDate.now();
+        LocalDate lastYear = LocalDate.now().minusYears(1);
 
 
         List<LocalTime> voteTimeListFirstDay = ballotsList.stream()
-                .filter(b -> b.getDate().isEqual(firstDay))
+                .filter(b -> b.getDate().isEqual(currentYear))
                 .map(Ballot::getTime)
 //                .map(Ballot::getTimeString)
                 .collect(toList());
@@ -210,7 +210,7 @@ public class WebAppController {
                 .collect(toList());
 
         List<LocalTime> voteTimeListSecondDay = ballotsList.stream()
-                .filter(b -> b.getDate().isEqual(secondDay))
+                .filter(b -> b.getDate().isEqual(lastYear))
                 .map(Ballot::getTime)
                 .collect(toList());
 
@@ -226,35 +226,35 @@ public class WebAppController {
         // Output list should look like:
         // data: [16, 344, 445, 442, 155, 820, 433, 20, 150, 150, 3]
 
-        HashMap<String, Integer> voteCountForFirstDayInHoursFormatted = new HashMap<>();
-        voteCountForFirstDayInHoursFormatted.put("9",0);
-        voteCountForFirstDayInHoursFormatted.put("10",0);
-        voteCountForFirstDayInHoursFormatted.put("11",0);
-        voteCountForFirstDayInHoursFormatted.put("12",0);
-        voteCountForFirstDayInHoursFormatted.put("13",0);
-        voteCountForFirstDayInHoursFormatted.put("14",0);
-        voteCountForFirstDayInHoursFormatted.put("15",0);
-        voteCountForFirstDayInHoursFormatted.put("16",0);
-        voteCountForFirstDayInHoursFormatted.put("17",0);
-        voteCountForFirstDayInHoursFormatted.put("18",0);
-        voteCountForFirstDayInHoursFormatted.put("19",0);
-        voteCountForFirstDayInHoursFormatted.put("20",0);
-        voteCountForFirstDayInHoursFormatted.put("21",0);
+        HashMap<String, Integer> voteCountForCurrentYearInHoursFormatted = new HashMap<>();
+        voteCountForCurrentYearInHoursFormatted.put("9",0);
+        voteCountForCurrentYearInHoursFormatted.put("10",0);
+        voteCountForCurrentYearInHoursFormatted.put("11",0);
+        voteCountForCurrentYearInHoursFormatted.put("12",0);
+        voteCountForCurrentYearInHoursFormatted.put("13",0);
+        voteCountForCurrentYearInHoursFormatted.put("14",0);
+        voteCountForCurrentYearInHoursFormatted.put("15",0);
+        voteCountForCurrentYearInHoursFormatted.put("16",0);
+        voteCountForCurrentYearInHoursFormatted.put("17",0);
+        voteCountForCurrentYearInHoursFormatted.put("18",0);
+        voteCountForCurrentYearInHoursFormatted.put("19",0);
+        voteCountForCurrentYearInHoursFormatted.put("20",0);
+        voteCountForCurrentYearInHoursFormatted.put("21",0);
 
-        HashMap<String, Integer> voteCountForSecondDayInHoursFormatted = new HashMap<>();
-        voteCountForSecondDayInHoursFormatted.put("9",0);
-        voteCountForSecondDayInHoursFormatted.put("10",0);
-        voteCountForSecondDayInHoursFormatted.put("11",0);
-        voteCountForSecondDayInHoursFormatted.put("12",0);
-        voteCountForSecondDayInHoursFormatted.put("13",0);
-        voteCountForSecondDayInHoursFormatted.put("14",0);
-        voteCountForSecondDayInHoursFormatted.put("15",0);
-        voteCountForSecondDayInHoursFormatted.put("16",0);
-        voteCountForSecondDayInHoursFormatted.put("17",0);
-        voteCountForSecondDayInHoursFormatted.put("18",0);
-        voteCountForSecondDayInHoursFormatted.put("19",0);
-        voteCountForSecondDayInHoursFormatted.put("20",0);
-        voteCountForSecondDayInHoursFormatted.put("21",0);
+        HashMap<String, Integer> voteCountForPreviousYearInHoursFormatted = new HashMap<>();
+        voteCountForPreviousYearInHoursFormatted.put("9",0);
+        voteCountForPreviousYearInHoursFormatted.put("10",0);
+        voteCountForPreviousYearInHoursFormatted.put("11",0);
+        voteCountForPreviousYearInHoursFormatted.put("12",0);
+        voteCountForPreviousYearInHoursFormatted.put("13",0);
+        voteCountForPreviousYearInHoursFormatted.put("14",0);
+        voteCountForPreviousYearInHoursFormatted.put("15",0);
+        voteCountForPreviousYearInHoursFormatted.put("16",0);
+        voteCountForPreviousYearInHoursFormatted.put("17",0);
+        voteCountForPreviousYearInHoursFormatted.put("18",0);
+        voteCountForPreviousYearInHoursFormatted.put("19",0);
+        voteCountForPreviousYearInHoursFormatted.put("20",0);
+        voteCountForPreviousYearInHoursFormatted.put("21",0);
 
         Integer startHour = 9;
 
@@ -271,10 +271,10 @@ public class WebAppController {
 
                 if(startHour < 10){
                     String stringToPut = "0".concat(String.valueOf(startHour));
-                    voteCountForFirstDayInHoursFormatted.put(stringToPut , numberOfVotesForExactHour);
+                    voteCountForCurrentYearInHoursFormatted.put(stringToPut , numberOfVotesForExactHour);
 
                 } else {
-                    voteCountForFirstDayInHoursFormatted.put(String.valueOf(startHour),numberOfVotesForExactHour);
+                    voteCountForCurrentYearInHoursFormatted.put(String.valueOf(startHour),numberOfVotesForExactHour);
                 }
             }
 
@@ -288,22 +288,22 @@ public class WebAppController {
 
         HashMap<String, String> map = new HashMap<String, String>();
 
-        voteCountForFirstDayInHoursFormatted.put("09", voteCountForFirstDayInHoursFormatted.remove("9"));
+        voteCountForCurrentYearInHoursFormatted.put("09", voteCountForCurrentYearInHoursFormatted.remove("9"));
         // TreeMap to store values of HashMap
         TreeMap<String, Integer> sorted = new TreeMap<>();
         // Copy all data from hashMap into TreeMap
-        sorted.putAll(voteCountForFirstDayInHoursFormatted);
+        sorted.putAll(voteCountForCurrentYearInHoursFormatted);
         Collection<Integer> values = sorted.values();
 
-        List<String> voteTimeListFirstDayStringsSorted = new ArrayList<>();
+        List<String> voteTimeListCurrentYearStringsSorted = new ArrayList<>();
         ArrayList<Integer> listOfValues = new ArrayList<Integer>(values);
         for (Integer value: listOfValues) {
-            voteTimeListFirstDayStringsSorted.add(String.valueOf(value));
+            voteTimeListCurrentYearStringsSorted.add(String.valueOf(value));
         }
 
 
 
-        // Second day
+        // Previous year
         startHour = 9;
 
         for ( int index=0 ; index<voteTimeListSecondDayStrings.size() ; index++) {
@@ -318,10 +318,10 @@ public class WebAppController {
 
                 if(startHour < 10){
                     String stringToPut = "0".concat(String.valueOf(startHour));
-                    voteCountForSecondDayInHoursFormatted.put(stringToPut , numberOfVotesForExactHour);
+                    voteCountForPreviousYearInHoursFormatted.put(stringToPut , numberOfVotesForExactHour);
 
                 } else {
-                    voteCountForSecondDayInHoursFormatted.put(String.valueOf(startHour),numberOfVotesForExactHour);
+                    voteCountForPreviousYearInHoursFormatted.put(String.valueOf(startHour),numberOfVotesForExactHour);
                 }
             }
 
@@ -335,17 +335,17 @@ public class WebAppController {
 
         map = new HashMap<String, String>();
 
-        voteCountForSecondDayInHoursFormatted.put("09", voteCountForSecondDayInHoursFormatted.remove("9"));
+        voteCountForPreviousYearInHoursFormatted.put("09", voteCountForPreviousYearInHoursFormatted.remove("9"));
         // TreeMap to store values of HashMap
         sorted = new TreeMap<>();
         // Copy all data from hashMap into TreeMap
-        sorted.putAll(voteCountForSecondDayInHoursFormatted);
+        sorted.putAll(voteCountForPreviousYearInHoursFormatted);
         values = sorted.values();
 
-        List<String> voteTimeListSecondDayStringsSorted = new ArrayList<>();
+        List<String> voteTimeListPreviousYearStringsSorted = new ArrayList<>();
         listOfValues = new ArrayList<Integer>(values);
         for (Integer value: listOfValues) {
-            voteTimeListSecondDayStringsSorted.add(String.valueOf(value));
+            voteTimeListPreviousYearStringsSorted.add(String.valueOf(value));
         }
 
         //End second day
@@ -365,11 +365,11 @@ public class WebAppController {
 //
 
 
-        String dateOfVoteFromBackend = firstDay.toString();
+        String dateOfVoteFromBackend = currentYear.toString();
         model.addAttribute("partiesNamesList", partyNamesList);
         model.addAttribute("ballotsCountList", partyBallotsCountList);
-        model.addAttribute("ballotsTimelineListFirstDay", voteTimeListFirstDayStringsSorted);
-        model.addAttribute("ballotsTimelineListSecondDay", voteTimeListSecondDayStringsSorted);
+        model.addAttribute("ballotsTimelineListFirstDay", voteTimeListCurrentYearStringsSorted);
+        model.addAttribute("ballotsTimelineListSecondDay", voteTimeListPreviousYearStringsSorted);
         model.addAttribute("dateOfVoteFromBackend", dateOfVoteFromBackend);
 
         return "../static/bar-charts";

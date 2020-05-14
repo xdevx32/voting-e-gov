@@ -62,13 +62,13 @@
         data: {
             labels: ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"],
             datasets: [{
-                label: "Гласове през първи ден на кампанията.",
+                label: "Гласове за текущата година.",
                 fill: false,
                 backgroundColor: '#00c292',
                 borderColor: '#00c292',
                 data: ballotsTimelineListFirstDay /*[16, 344, 445, 442, 155, 820, 433, 20, 150, 150, 3]*///TestData First day
             }, {
-                label: "Гласове през втори ден на кампанията.",
+                label: "Гласове миналата година.",
                 fill: false,
                 backgroundColor: '#fb9678',
                 borderColor: '#fb9678',
@@ -80,7 +80,7 @@
             responsive: true,
             title:{
                 display:true,
-                text:'Графика за гласове по час и ден. ' + dateOfVote
+                text:'Графика за гласове по час и година. ' + dateOfVote
             },
             tooltips: {
                 mode: 'index',
