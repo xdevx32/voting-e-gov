@@ -5,6 +5,7 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,6 +21,9 @@ public class Party {
     private String number;
 
     private String slogan;
+
+    @OneToMany
+    private List<PartyMember> partyMembersList;
 
     private String imageUrl;
 

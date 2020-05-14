@@ -3,8 +3,10 @@ package com.nbu.evote.controller;
 import com.nbu.evote.entity.Ballot;
 import com.nbu.evote.entity.Citizen;
 import com.nbu.evote.entity.Party;
+import com.nbu.evote.entity.PartyMember;
 import com.nbu.evote.service.BallotService;
 import com.nbu.evote.service.CitizenService;
+import com.nbu.evote.service.PartyMemberService;
 import com.nbu.evote.service.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -31,6 +33,9 @@ public class WebAppController {
 
     @Autowired
     private CitizenService citizenService;
+
+    @Autowired
+    private PartyMemberService partyMemberService;
 
     @Autowired
     private BallotService ballotService;
@@ -132,11 +137,13 @@ public class WebAppController {
         model.addAttribute("mode", appMode);
         ArrayList<Party> partiesList = partyService.getAllParties();
         List<String> partyNamesList = partiesList.stream()
+                .sorted(Comparator.comparing(Party::getBallotsCount, Comparator.reverseOrder()))
                 .map(Party::getName)
                 .collect(toList());
 
         List<Integer> partyBallotsCountList = partiesList.stream()
                 .map(Party::getBallotsCount)
+                .sorted(Comparator.reverseOrder())
                 .collect(toList());
 
         List<Ballot> ballotsList = ballotService.getBallots();
@@ -344,6 +351,18 @@ public class WebAppController {
         //End second day
         // BUG ABOVE. FIX IT!
 
+
+//
+//        // Adding a Party Member Object
+//        PartyMember boykoBorissov = new PartyMember();
+//
+//        boykoBorissov.setName("Бойко Борисов");
+//        boykoBorissov.setDayOfBirth(LocalDate.of(1959,6,13));
+////        boykoBorissov.setParty(partyService.getPartyByName("ГЕРБ"));
+//        boykoBorissov.setParty(partyService.getParty(38));
+//
+//        partyMemberService.addPartyMember(boykoBorissov);
+//
 
 
         String dateOfVoteFromBackend = firstDay.toString();

@@ -44,6 +44,11 @@ public class PartyService {
     }
 
 
+    public Party getPartyByName(String partyName) {
+        Party party = partyRepository.findByName(partyName);
+//                .orElseThrow(() -> new IllegalArgumentException("Невалидно име на партия: " + partyName));
+        return party;
+    }
 }
 
 

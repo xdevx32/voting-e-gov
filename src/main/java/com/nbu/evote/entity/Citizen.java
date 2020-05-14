@@ -3,6 +3,7 @@ package com.nbu.evote.entity;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 public class Citizen {
@@ -15,9 +16,21 @@ public class Citizen {
 
     private String EGN;
 
+    private LocalDate dayOfBirth;
+
+    public Boolean getHasVoted() {
+        return hasVoted;
+    }
+
+    public void setHasVoted(Boolean hasVoted) {
+        this.hasVoted = hasVoted;
+    }
+
     private String city;
 
     private String uniqueVoteId;
+
+    private Boolean hasVoted;
 
     @OneToOne
     @Nullable
@@ -31,6 +44,7 @@ public class Citizen {
         this.name = "Default name";
         this.EGN = "";
         this.uniqueVoteId = "";
+        this.dayOfBirth = LocalDate.now();
         this.city = "";
         this.ballot = new Ballot();
     }
@@ -74,6 +88,15 @@ public class Citizen {
     public void setCity(String city) {
         this.city = city;
     }
+
+    public LocalDate getDayOfBirth() {
+        return dayOfBirth;
+    }
+
+    public void setDayOfBirth(LocalDate dayOfBirth) {
+        this.dayOfBirth = dayOfBirth;
+    }
+
 
     public String getUniqueVoteId() {
         return uniqueVoteId;
