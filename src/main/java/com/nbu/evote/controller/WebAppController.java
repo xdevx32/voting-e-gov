@@ -364,6 +364,10 @@ public class WebAppController {
 //        partyMemberService.addPartyMember(boykoBorissov);
 //
 
+        HashMap<Integer, String> pieChartData = new HashMap<>();
+        for (int i = 0; i < partyBallotsCountList.size(); i++) {
+            pieChartData.put(partyBallotsCountList.get(i), partyNamesList.get(i));
+        }
 
         String dateOfVoteFromBackend = currentYear.toString();
         model.addAttribute("partiesNamesList", partyNamesList);
@@ -371,7 +375,7 @@ public class WebAppController {
         model.addAttribute("ballotsTimelineListFirstDay", voteTimeListCurrentYearStringsSorted);
         model.addAttribute("ballotsTimelineListSecondDay", voteTimeListPreviousYearStringsSorted);
         model.addAttribute("dateOfVoteFromBackend", dateOfVoteFromBackend);
-
+        model.addAttribute("pieChartData", pieChartData);
         return "../static/bar-charts";
     }
 }

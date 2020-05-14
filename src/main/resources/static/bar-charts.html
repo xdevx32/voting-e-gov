@@ -181,7 +181,14 @@
 		</div>
 	</div>
 	<!-- Breadcomb area End-->
-    <!-- Bar Chart area End-->
+    <!-- Pie Chart Area Start-->
+    <div class="row">
+        <div id="chartContainer" style="height: 300px;width:87%;margin-left:6.5%;"></div>
+    </div>
+    <!-- Pie Chart Area End-->
+
+
+    <!-- Bar Chart area Start-->
     <div class="bar-chart-area">
         <div class="container">
             <div class="row">
@@ -215,8 +222,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="footer-copy-right">
-                        <p>Copyright © 2018 
-. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                        <p>Всички права запазени &copy; 2020 - Университетски проект</p>
                     </div>
                 </div>
             </div>
@@ -283,12 +289,23 @@
         var partiesBallotsCount =  /*[[${ballotsCountList}]]*/;
         var ballotsTimelineListFirstDay =  /*[[${ballotsTimelineListFirstDay}]]*/;
         var ballotsTimelineListSecondDay = /*[[${ballotsTimelineListSecondDay}]]*/;
+        var pieChartData = /*[[${pieChartData}]]*/;
         var dateOfVote = /*[[${dateOfVoteFromBackend}]]*/;
 
-        var importedInlineScriptForBarCharts = document.createElement('script');
-        importedInlineScriptForBarCharts.src = 'js/charts/customCharts.js';
-        document.head.appendChild(importedInlineScriptForBarCharts);
 
+        let dataSet = new Set();
+
+        for (i = 0; i < partyNamesList.length; i++) {
+          dataSet.add({y : 20, name: partyNamesList[i]});
+        }
+
+
+        var importedInlineScriptForBarCharts = document.createElement('script');
+        var importedPieChartScript = document.createElement('script');
+        importedInlineScriptForBarCharts.src = 'js/charts/customCharts.js';
+        importedPieChartScript.src = 'js/charts/pieCharts.js';
+        document.head.appendChild(importedInlineScriptForBarCharts);
+        document.head.appendChild(importedPieChartScript);
     /*]]>*/
 
     </script>
@@ -306,8 +323,9 @@
     <!-- main JS
 		============================================ -->
     <script src="js/main.js"></script>
-	<!-- tawk chat JS
-		============================================ -->
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <!-- tawk chat JS
+        ============================================ -->
 <!--    <script src="js/tawk-chat.js"></script>-->
 </body>
 
