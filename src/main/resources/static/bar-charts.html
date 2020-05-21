@@ -289,16 +289,10 @@
         var partiesBallotsCount =  /*[[${ballotsCountList}]]*/;
         var ballotsTimelineListFirstDay =  /*[[${ballotsTimelineListFirstDay}]]*/;
         var ballotsTimelineListSecondDay = /*[[${ballotsTimelineListSecondDay}]]*/;
-        var pieChartData = /*[[${pieChartData}]]*/;
+        var totalVoteCount = /*[[${totalBallotsCastedForSection}]]*/;
+        var PCD = /*[[${pieChartData}]]*/;
         var dateOfVote = /*[[${dateOfVoteFromBackend}]]*/;
-
-
-        let dataSet = new Set();
-
-        for (i = 0; i < partyNamesList.length; i++) {
-          dataSet.add({y : 20, name: partyNamesList[i]});
-        }
-
+        var pieChartData = [];
 
         var importedInlineScriptForBarCharts = document.createElement('script');
         var importedPieChartScript = document.createElement('script');

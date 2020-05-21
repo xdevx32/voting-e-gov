@@ -376,12 +376,16 @@ public class WebAppController {
             pieChartData.put(partyBallotsCountList.get(i), partyNamesList.get(i));
         }
 
+        Integer totalBallotsCastedForSection = ballotService.getBallots().size();
+
+        System.out.println("Total Ballots for section: " + totalBallotsCastedForSection);
         String dateOfVoteFromBackend = currentYear.toString();
         model.addAttribute("partiesNamesList", partyNamesList);
         model.addAttribute("ballotsCountList", partyBallotsCountList);
         model.addAttribute("ballotsTimelineListFirstDay", voteTimeListCurrentYearStringsSorted);
         model.addAttribute("ballotsTimelineListSecondDay", voteTimeListPreviousYearStringsSorted);
         model.addAttribute("dateOfVoteFromBackend", dateOfVoteFromBackend);
+        model.addAttribute("totalBallotsCastedForSection",totalBallotsCastedForSection);
         model.addAttribute("pieChartData", pieChartData);
         return "../static/bar-charts";
     }
