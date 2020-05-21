@@ -62,6 +62,13 @@ public class WebAppController {
         return "../static/index-bs";
     }
 
+    @RequestMapping("/party-info-page")
+    public String partyInfoPage(Model model) {
+
+
+        return "../static/party-info-page";
+    }
+
     @RequestMapping("/admin")
     public String admin(Model model){
         model.addAttribute("datetime", new Date());
