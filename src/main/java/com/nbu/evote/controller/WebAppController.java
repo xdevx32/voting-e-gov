@@ -125,6 +125,28 @@ public class WebAppController {
         party.addBallot(ballot);
         citizenService.updateCitizen(currentCitizen);
 
+        return "../static/vote-success-animation";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "vote-successs")
+    public String voteSuccesss(Model model, @ModelAttribute Party party){
+//        party = partyService.getParty(party.getId());
+//        model.addAttribute("party", party);
+
+//
+//        Ballot ballot = new Ballot();
+//
+//        ballot.setParty(party);
+//        ballot.setCitizen(currentCitizen);
+//        ballot.setDate(LocalDate.now().plusDays(1));
+//        ballot.setTime(LocalTime.now().plusHours(2));
+//        ballotService.addBallot(ballot);
+//
+//        assert currentCitizen != null;
+//        currentCitizen.setBallot(ballot);
+//        party.addBallot(ballot);
+//        citizenService.updateCitizen(currentCitizen);
+
         return "../static/vote-success";
     }
 
