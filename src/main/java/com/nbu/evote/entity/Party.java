@@ -4,9 +4,7 @@ import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Party {
@@ -97,6 +95,7 @@ public class Party {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
     @Override
     public String toString() {
         return "Party{" + "id=" + id + ", name=" + name + ", number=" + number + '}';

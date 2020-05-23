@@ -30,11 +30,11 @@
 </div>
 <div class="ballotwrap">
     <div class="ballot">
-        <h1>BALLOT</h1>
+        <h1>БЮЛЕТИНА</h1>
         <p>
-            <span><i class="fa fa-circle-o" aria-hidden="true"></i> ГЕРБ</span>
-            <span><i class="fa fa-circle-o" aria-hidden="true"></i> БСП</span>
-            <span><i class="fa fa-circle" aria-hidden="true"></i> СДС</span>
+            <span><i class="fa fa-circle-o" aria-hidden="true" th:text="${party.number + '. ' + party.name}"></i></span>
+<!--            <span><i class="fa fa-circle-o" aria-hidden="true"></i> БСП</span>-->
+<!--            <span><i class="fa fa-circle" aria-hidden="true"></i> СДС</span>-->
 <!--            <span><i class="fa fa-circle-o" aria-hidden="true"></i> Treat Williams</span>-->
         </p>
     </div>

@@ -18,13 +18,9 @@ public class Citizen {
 
     private LocalDate dayOfBirth;
 
-    public Boolean getHasVoted() {
-        return hasVoted;
-    }
-
-    public void setHasVoted(Boolean hasVoted) {
-        this.hasVoted = hasVoted;
-    }
+    @OneToOne
+    @Nullable
+    private Ballot ballot;
 
     private String city;
 
@@ -32,9 +28,6 @@ public class Citizen {
 
     private Boolean hasVoted;
 
-    @OneToOne
-    @Nullable
-    private Ballot ballot;
 
     public Citizen() {
     }
@@ -49,6 +42,14 @@ public class Citizen {
         this.ballot = new Ballot();
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -61,13 +62,14 @@ public class Citizen {
         return ballot;
     }
 
-    public long getId() {
-        return id;
+    public Boolean getHasVoted() {
+        return hasVoted;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setHasVoted(Boolean hasVoted) {
+        this.hasVoted = hasVoted;
     }
+
 
     public void setBallot(Ballot ballot) {
         this.ballot = ballot;

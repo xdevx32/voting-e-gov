@@ -55,11 +55,12 @@ public class WebAppController {
         model.addAttribute("username", "Acho");
         model.addAttribute("mode", appMode);
 
-        ArrayList<Party> parties = new ArrayList<>();
+        List<Party> parties = new ArrayList<>();
         parties = partyService.getAllParties();
 
-        model.addAttribute("parties" , parties);
+        parties.sort(Comparator.comparing(Party::getNumber));
 
+        model.addAttribute("parties" , parties);
 
         return "../static/index-bs";
     }

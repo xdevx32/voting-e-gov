@@ -26,7 +26,7 @@ body:after {
 }
 body .ballotwrap {
   position: absolute;
-  width: 300px;
+  width: 420px;
   height: calc(50% - 85px);
   overflow: hidden;
   left: 50%;
@@ -36,7 +36,7 @@ body .ballotwrap {
 }
 body .ballotwrap .ballot {
   position: absolute;
-  width: 200px;
+  width: 320px;
   height: 300px;
   text-align: center;
   background: #ffffff;
@@ -186,7 +186,7 @@ body.wink .murica {
   opacity: 1;
 }
 body.wink .ballotwrap .ballot {
-  animation: drop 1s ease-in-out forwards;
+  animation: drop 4s ease-in-out forwards;
 }
 @keyframes drop {
   0% {
@@ -203,7 +203,7 @@ body.wink .container #cube .front .mouth {
 }
 body.wink .container #cube .front .eye:nth-of-type(1) {
   animation: wink 0.3s ease-in-out 1;
-  animation-delay: 1.2s;
+  animation-delay: 0.5s;
 }
 @keyframes wink {
   0% {
