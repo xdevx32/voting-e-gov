@@ -28,6 +28,8 @@ public class WebAppController {
 
     private Party selectedParty;
 
+    private Party clickedParty;
+
     private String appMode;
 
     @Autowired
@@ -49,8 +51,8 @@ public class WebAppController {
         appMode = environment.getProperty("app-mode");
     }
 
-    @RequestMapping("/")
-    public String index(Model model){
+    @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.PUT, RequestMethod.POST} )
+    public String index(Model model,  @ModelAttribute Party party){
         model.addAttribute("datetime", new Date());
         model.addAttribute("username", "Acho");
         model.addAttribute("mode", appMode);
@@ -59,18 +61,31 @@ public class WebAppController {
         parties = partyService.getAllParties();
 
         parties.sort(Comparator.comparing(Party::getNumber));
-
+//        model.addAttribute("party", party);
         model.addAttribute("parties" , parties);
+        clickedParty = party;
 
         return "../static/index-bs";
     }
 
-    @RequestMapping("/party-info-page")
-    public String partyInfoPage(Model model) {
 
-
+    @RequestMapping(value = "/party-info-page", method = {RequestMethod.GET, RequestMethod.PUT, RequestMethod.POST} )
+    public String setClickedParty(Model model, @ModelAttribute Party party) {
+        party = partyService.getParty(party.getId());
+        clickedParty = party;
+        model.addAttribute("party", party);
         return "../static/party-info-page";
     }
+//
+//    @RequestMapping(value = "/party-info-page", method = {RequestMethod.GET} )
+//    public String partyInfoPage(Model model, @ModelAttribute Party party) {
+//        model.addAttribute("party", clickedParty);
+//
+//        party = (Party) model.getAttribute("party");
+//        clickedParty = (Party) model.getAttribute("party");
+//        model.addAttribute("party",model.getAttribute("party") );
+//        return "../static/party-info-page";
+//    }
 
     @RequestMapping("/admin")
     public String admin(Model model){

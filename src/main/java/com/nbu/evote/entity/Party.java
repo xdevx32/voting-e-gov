@@ -25,6 +25,8 @@ public class Party {
 
     private String imageUrl;
 
+    private String groupImageUrl;
+
     @OneToMany
     Set<Ballot> ballots = new HashSet<>();
 
@@ -37,6 +39,7 @@ public class Party {
         this.number = "44";
         this.slogan = "Vote for us!";
         this.imageUrl = "https://atlantaplanningguys.com/wp-content/uploads/2009/10/question-mark-image-200x300.jpg";
+        this.groupImageUrl = "https://atlantaplanningguys.com/wp-content/uploads/2009/10/question-mark-image-200x300.jpg";
         this.ballots = new HashSet<>();
     }
 
@@ -82,6 +85,14 @@ public class Party {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public String getGroupImageUrl() {
+        return groupImageUrl;
+    }
+
+    public void setGroupImageUrl(String groupImageUrl) {
+        this.groupImageUrl = groupImageUrl;
     }
 
     public String getSlogan() {

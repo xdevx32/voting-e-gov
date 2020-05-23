@@ -72,13 +72,16 @@
     <div class="row" style="margin-left: 27px;">
           <div class="col-lg-3 col-md-6 text-center" style="margin-right:90px;" th:each="party: ${parties}">
             <div class="mt-5">
-              <span>
-                  <a href="/party-info-page"  target="blank">
-                    <img th:src="${party.imageUrl}" height="300" width="300"/>
-                    <h3 style="margin-left: 29px;" class="h4 mb-2" th:text="${party.number + '. ' + party.name}"></h3>
-                  </a>
-                  <p style="margin-left: 29px;" class="text-muted mb-0" th:text="${party.slogan}"></p>
-              </span>
+               <form action="#" th:action="@{/party-info-page}" th:object="${party}" method="post">
+                  <span>
+                    <a href="/party-info-page" target="blank">  </a>
+                      <img th:src="${party.imageUrl}" height="300" width="300"/>
+                      <h3 style="margin-left: 29px;" class="h4 mb-2" th:text="${party.number + '. ' + party.name}"></h3>
+                      <input type="radio" th:name="${'radio' + party.number}" class="blt-radio-btn" th:field="*{id}" th:value="${party.id}"/>
+                      <button type="submit" class="btn btn-primary btn-m js-scroll-trigger">Повече информация</button>
+                      <p style="margin-left: 29px;" class="text-muted mb-0" th:text="${party.slogan}"></p>
+                </span>
+              </form>
             </div>
           </div>
     </div>

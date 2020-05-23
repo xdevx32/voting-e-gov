@@ -18,7 +18,6 @@ public class PartyService {
         ArrayList<Party> partyList = new ArrayList<>();
         partyRepository.findAll().forEach(party -> partyList.add(party));
 
-
         return partyList;
     }
 
@@ -42,7 +41,6 @@ public class PartyService {
                 .orElseThrow(() -> new IllegalArgumentException("Невалидно ID на партия: " + id));
         partyRepository.delete(party);
     }
-
 
     public Party getPartyByName(String partyName) {
         Party party = partyRepository.findByName(partyName);
