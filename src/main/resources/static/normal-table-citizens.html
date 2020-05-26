@@ -512,6 +512,10 @@
                                         <div th:if="${message}">
                                             <h2 th:text="${message}"/>
                                         </div>
+                                        <p>При прикачването е важно да спазите формата на данните, както е посочен: </p>
+                                        <br>
+                                        <img src="img/demo_csv_citizen_excel.png"/>
+                                        <br>
                                         <form method="POST" action="/admin/upload/citizens" enctype="multipart/form-data">
                                             <input type="file" name="file" /><br/><br/>
                                             <input type="submit" value="Добави списък" />

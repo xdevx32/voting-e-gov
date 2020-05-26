@@ -15,7 +15,6 @@ public class GlobalExceptionHandler {
 
         redirectAttributes.addFlashAttribute("message", e.getCause().getMessage());
         return "redirect:/uploadStatus";
-
     }
 
     /* Spring < 4.3.5

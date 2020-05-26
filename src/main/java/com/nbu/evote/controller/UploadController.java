@@ -53,6 +53,16 @@ public class UploadController {
 
         } catch (IOException | CsvValidationException e) {
             e.printStackTrace();
+            System.out.println("************************* OH snap!" +
+                    " It looks like you added something to Citizen " +
+                    "or Party entity, but forgot to check the upload method." +
+                    "You broke the whole upload logic. Sorry if it is too fragile for you" +
+                    "but you're lucky today and I will give you" +
+                    "a little hint. You should set the missing property in this file: " +
+                    "CSVReaderAndParser.java and find your method: invokeCitizensUpload" +
+                    "or invokePartiesUpload, respectively. Add your new property as the " +
+                    " other properties are carefully added, add you won't get an exception " +
+                    "*************************");
         }
 
         return "redirect:/uploadStatus";
@@ -80,6 +90,16 @@ public class UploadController {
 
         } catch (IOException | CsvValidationException e) {
             e.printStackTrace();
+            System.out.println("************************* OH snap!" +
+                    " It looks like you added something to Citizen " +
+                    "or Party entity, but forgot to check the upload method." +
+                    "You broke the whole upload logic. Sorry if it is too fragile for you" +
+                    "but you're lucky today and I will give you" +
+                    "a little hint. You should set the missing property in this file: " +
+                    "CSVReaderAndParser.java and find your method: invokeCitizensUpload" +
+                    "or invokePartiesUpload, respectively. Add your new property as the " +
+                    " other properties are carefully added, add you won't get an exception " +
+                    "*************************");
         }
 
         return "redirect:/uploadStatus";

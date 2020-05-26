@@ -11,7 +11,14 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class CSVReaderAndParser {
 
@@ -48,6 +55,10 @@ public class CSVReaderAndParser {
                     citizen.setName(nextRecord[0]);
                     citizen.setEGN(nextRecord[1]);
                     citizen.setUniqueVoteId(nextRecord[2]);
+                    citizen.setCity(nextRecord[3]);
+                    LocalDate dateOfBirth =LocalDate.parse(nextRecord[4]);
+                    citizen.setDayOfBirth(dateOfBirth);
+                    citizen.setHasVoted(Boolean.valueOf(nextRecord[5]));
                     listOfRecords.add(citizen);
                 }
             }
@@ -71,6 +82,9 @@ public class CSVReaderAndParser {
 
                     party.setName(nextRecord[0]);
                     party.setNumber(nextRecord[1]);
+                    party.setSlogan(nextRecord[2]);
+                    party.setImageUrl(nextRecord[3]);
+                    party.setGroupImageUrl(nextRecord[4]);
                     listOfRecords.add(party);
                 }
             }
