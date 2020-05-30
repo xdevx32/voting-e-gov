@@ -10,8 +10,10 @@
 	</parent>
 	<groupId>com.example.evote.prototype</groupId>
 	<artifactId>demo.evote</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<version>1.0-SNAPSHOT</version>
 	<name>demo.evote</name>
+	<url>http://ivote-bg.com</url>
 	<description>Diploma work</description>
 
 	<properties>
