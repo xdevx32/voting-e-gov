@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - E-Voting System</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .login-header h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .login-header p {
+            color: #666;
+        }
+        .form-control {
+            padding: 12px 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+        }
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102,126,234,0.25);
+        }
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+        }
+        .alert {
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <i class="fa fa-lock fa-3x" style="color: #667eea; margin-bottom: 15px;"></i>
+            <h2>Admin Login</h2>
+            <p>Access the E-Voting Administration Panel</p>
+        </div>
+
+        <div th:if="${param.error}" class="alert alert-danger">
+            <i class="fa fa-exclamation-triangle"></i> Invalid username or password.
+        </div>
+
+        <div th:if="${param.logout}" class="alert alert-success">
+            <i class="fa fa-check-circle"></i> You have been logged out successfully.
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <div class="form-group">
+                <input type="text" name="username" class="form-control"
+                       placeholder="Username" required autofocus>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" class="form-control"
+                       placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="remember-me"> Remember me
+                </label>
+            </div>
+            <button type="submit" class="btn-login">
+                <i class="fa fa-sign-in"></i> Sign In
+            </button>
+        </form>
+
+        <a href="/" class="back-link">
+            <i class="fa fa-arrow-left"></i> Back to Home
+        </a>
+    </div>
+</body>
+</html>
